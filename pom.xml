@@ -12,6 +12,7 @@
     <modules>
         <module>common-core</module>
         <module>common-cache</module>
+        <module>common-db</module>
     </modules>
 
 
