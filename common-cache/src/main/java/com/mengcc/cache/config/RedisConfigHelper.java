@@ -6,7 +6,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -19,6 +22,8 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @date 2019/8/13
  * @desc 缓存配置
  */
+@Configuration
+@EnableCaching
 public class RedisConfigHelper {
 
     /**
@@ -46,7 +51,6 @@ public class RedisConfigHelper {
      * @return
      */
     @Bean
-    @Primary
     public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory factory) {
 
         GenericJackson2JsonRedisSerializer serializer = newJsonRedisSerializer();

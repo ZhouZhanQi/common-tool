@@ -1,4 +1,4 @@
-package com.mengcc.cache.config;
+package com.mengcc.cache.helper;
 
 import com.mengcc.cache.storage.CacheStorage;
 import com.mengcc.core.context.ThreadContext;
