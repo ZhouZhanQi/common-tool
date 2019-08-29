@@ -52,7 +52,7 @@ public class JacksonUtils {
      * @param clazz
      * @return
      */
-    public static <T> T jsonToPojo(String jsonStr, Class<T> clazz) {
+    public static <T> T json2pojo(String jsonStr, Class<T> clazz) {
         try {
             return OBJECT_MAPPER.readValue(jsonStr, clazz);
         } catch (IOException e) {
@@ -70,7 +70,7 @@ public class JacksonUtils {
      * @param typeReference
      * @return
      */
-    public static <T> T jsonToPojo(String jsonStr, TypeReference<T> typeReference) {
+    public static <T> T json2pojo(String jsonStr, TypeReference<T> typeReference) {
         try {
             return OBJECT_MAPPER.readValue(jsonStr, typeReference);
         } catch (IOException e) {
@@ -85,7 +85,7 @@ public class JacksonUtils {
      * @param jsonStr
      * @return
      */
-    public static Map<String, Object> jsonToMap(String jsonStr) {
+    public static Map<String, Object> json2map(String jsonStr) {
         try {
             return OBJECT_MAPPER.readValue(jsonStr, new TypeReference<HashMap<String, Object>>() {});
         } catch (IOException e) {
@@ -99,7 +99,7 @@ public class JacksonUtils {
      * @param pojo
      * @return
      */
-    public static String pojoTojson(Object pojo) {
+    public static String pojo2json(Object pojo) {
         try {
             return OBJECT_MAPPER.writeValueAsString(pojo);
         } catch (IOException e) {
@@ -113,8 +113,8 @@ public class JacksonUtils {
      * @param pojo
      * @return
      */
-    public static Map<String, Object> pojoTomap(Object pojo) {
-        return jsonToMap(pojoTojson(pojo));
+    public static Map<String, Object> pojo2map(Object pojo) {
+        return json2map(pojo2json(pojo));
     }
 
     /**
