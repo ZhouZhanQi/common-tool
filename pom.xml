@@ -13,6 +13,7 @@
         <module>common-core</module>
         <module>common-cache</module>
         <module>common-db</module>
+        <module>common-spring</module>
     </modules>
 
 
