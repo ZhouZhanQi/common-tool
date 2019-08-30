@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.ValidationException;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -58,6 +62,24 @@ public class ApiExceptionHandle {
         log.error(">> 数据更新错误：{}", request.getRequestURI(), ex);
         String errMessage = StringUtils.isBlank(ex.getMessage()) ? "系统业务特殊错误" : ex.getMessage();
         return ResponseVo.fail(ex.getErrCode(), errMessage);
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseVo validationException(ValidationException ex) {
+        log.error(">> 参数校验错误：{}", ex.getMessage(), ex);
+        String errMessage = StringUtils.isBlank(ex.getMessage()) ? "系统业务特殊错误" : ex.getMessage();
+        return ResponseVo.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), errMessage);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseVo constraintViolationException(ConstraintViolationException ex, HttpServletRequest request){
+        log.error(">> 参数校验错误：{}", request.getRequestURI(), ex);
+        Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
+
+        Optional<ConstraintViolation<?>> firstViolation = violations.stream().findFirst();
+
+        String errMessage = !firstViolation.isPresent() ? "参数特殊错误" : firstViolation.get().getMessage();
+        return ResponseVo.fail(HttpStatus.BAD_REQUEST.value(), errMessage);
     }
 
     @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class})
