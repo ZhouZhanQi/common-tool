@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.MalformedParameterizedTypeException;
+
 /**
  * 接口统一返回信息, 默认为一个成功但无任何返回数据的对象。
  *
