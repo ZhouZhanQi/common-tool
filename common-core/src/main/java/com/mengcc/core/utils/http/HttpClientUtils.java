@@ -263,7 +263,7 @@ public final class HttpClientUtils {
 
     public static String doJsonPost(String url, String body) {
         Map<String, String> headers = new HashMap<>(2);
-        headers.put("Content-Type", "application/com.qianpen.core.json;charset=utf-8");
+        headers.put("Content-Type", "application/com.mengcc.core.utils.json;charset=utf-8");
         return doPost(url, body, headers);
     }
 

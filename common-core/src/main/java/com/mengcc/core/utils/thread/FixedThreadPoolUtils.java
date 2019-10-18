@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 /**
  * @author zhouzq
  * @date 2019/8/13
- * @desc 固定大小线程池100个
+ * @desc 固定大小线程池50个
  */
 public class FixedThreadPoolUtils implements ThreadPoolUtils {
 

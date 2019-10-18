@@ -22,7 +22,6 @@ import javax.validation.ValidationException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -35,7 +34,7 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 @Slf4j
 public class ApiExceptionHandle {
-    
+
     @ExceptionHandler
     public ResponseVo handleConversionException (ConversionException ex, HttpServletRequest request) {
         log.error(">> 数据转换错误: {}", request.getRequestURI(), ex);
